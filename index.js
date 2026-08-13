@@ -26,7 +26,7 @@ if(!config.get('jwtPrivateKey')){
 
 app.use(cors({
     exposedHeaders: ['x-auth-token'],
-    allowedHeaders: ['http://localhost:5173', 'https://jazzy-tartufo-3ef89f.netlify.app/']
+    origin: ['http://localhost:5173', 'https://jazzy-tartufo-3ef89f.netlify.app/'],
 }))
 app.use('/users' , userRouter)
 app.use('/auth' , authRouter)
