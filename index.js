@@ -25,14 +25,19 @@ if(!config.get('jwtPrivateKey')){
 }
 
 app.use(cors({
-    exposedHeaders: ['x-auth-token'],
-    origin: ['http://localhost:5173', 'https://jazzy-tartufo-3ef89f.netlify.app/'],
+    origin: ['http://localhost:5173', 'https://jazzy-tartufo-3ef89f.netlify.app'],
+    exposedHeaders: ['x-auth-token']
 }))
+app.get('/', (req, res) => {
+  res.send('API is running');
+});
 app.use('/users' , userRouter)
 app.use('/auth' , authRouter)
 app.use('/posts' , postRouter)
 app.use('/posts' , commentRouter)
 
-app.listen(3000, () => {
-  console.log("listening on port 3000...");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`listening on port ${PORT}...`);
 });
